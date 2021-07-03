@@ -64,5 +64,32 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
+    //Failing Test case
+    @Test
+    public void total_price_should_be_equal_to_sum_of_items(){
+        addDetails();
+        assertEquals(506,restaurant.getTotalPrice(restaurant.getMenu()));
+    }
+    //failing Test case
+    @Test
+    public void total_price_should_reduce_accordingly_on_removal() throws itemNotFoundException {
+        addDetails();
+        List<Item> menu = restaurant.getMenu();
+        int total = restaurant.getTotalPrice(menu);
+        assertEquals(total,388);
+        restaurant.removeFromMenu("Vegetable lasagne");
+        int newTotal = restaurant.getTotalPrice(menu);
+        assertEquals(newTotal,119);
+    }
+   //Failing test case
+    @Test
+    public void total_price_should_increase_accordingly_on_addition() throws itemNotFoundException {
+        addDetails();
+        List<Item> menu = restaurant.getMenu();
+        int total = restaurant.getTotalPrice(menu);
+        assertEquals(total,388);
+        restaurant.addToMenu("Souffle", 200);
+        int newTotal = restaurant.getTotalPrice(menu);
+        assertEquals(newTotal,588);
+    }
 }
