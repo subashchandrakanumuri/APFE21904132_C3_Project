@@ -46,6 +46,13 @@ public class Restaurant {
         return null;
     }
 
+    public int getTotalPrice(List<Item> items){
+        int total = 0;
+        for (Item item : items) {
+            total = total + item.getPrice();
+        }
+        return total;
+    }
 
     public void addToMenu(String name, int price) {
         Item newItem = new Item(name,price);
